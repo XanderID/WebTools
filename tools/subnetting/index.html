@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>WebTools - Subnetting</title>
+    <meta content="Membuat Subnetting Secara Otomatis!" name="description" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://tools.mulqi.uk.to/css/sb-admin-2.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="http://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/2fa2350def.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <br /><br />
+    <div class="container-fluid">
+      <h1 class="h3 mb-2 text-gray-800">Subnetting</h1>
+      <p class="mb-4">
+        Sebelum Memulai Apa itu Subnetting?<br /><br />Subnetting adalah upaya /
+        proses untuk memecah sebuah network dengan jumlah host yang cukup
+        banyak, menjadi beberapa network dengan jumlah host yang lebih sedikit.
+        Teknik subnetting membuat skala jaringan lebih luas dan tidak dibatas
+        oleh kelas-kelas IP (IP Classes) A, B, dan C yang sudah diatur. Dengan
+        subnetting, anda bisa membuat network dengan batasan host yang lebih
+        realistis sesuai kebutuhan.
+      </p>
+
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Starting</h5>
+          <div class="d-flex align-items-center">
+            <span class="mr-2"></span>
+            <p class="card-text">
+              Sebelum memulai Subnetting, Mohon isi Form dibawah ini<br /><br />
+            </p>
+          </div>
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <label for="ip">IP</label>
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  id="ip"
+                  placeholder="212.12.1.0"
+                />
+              </div>
+              <div class="col-auto">
+                <label for="cidr">CIDR</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">/</div>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="cidr"
+                    placeholder="28"
+                  />
+                </div>
+              </div>
+              <div class="col-auto">
+                <button id="kembali" class="btn btn-primary btn-icon-split">
+                  <span class="icon text-white-50">
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </span>
+                  <span class="text">Kembali</span>
+                </button>
+                <button id="startSubnet" class="btn btn-primary btn-icon-split">
+                  <span class="icon text-white-50">
+                    <i class="fa-solid fa-scissors"></i>
+                  </span>
+                  <span class="text">Subnet</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <br />
+      <div id="results">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Informasi</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <p class="mb-4">
+                Berikut Hasil Subnetting nya, Mohon dicek Ulang!
+              </p>
+              <form>
+                <div class="form-row align-items-center">
+                  <div class="col-auto">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">IP</div>
+                      </div>
+                      <input type="text" class="form-control" id="infoip" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">CIDR</div>
+                      </div>
+                      <input type="text" class="form-control" id="infocidr" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Kelas</div>
+                      </div>
+                      <input type="text" class="form-control" id="infokelas" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Subnet Mask</div>
+                      </div>
+                      <input type="text" class="form-control" id="infomask" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Biner</div>
+                      </div>
+                      <input type="text" class="form-control" id="infobiner" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Subnet X</div>
+                      </div>
+                      <input type="text" class="form-control" id="infosubx" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Subnet Y</div>
+                      </div>
+                      <input type="text" class="form-control" id="infosuby" />
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Blok Subnet</div>
+                      </div>
+                      <input type="text" class="form-control" id="infoblok" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">List Subnet</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>Subnet</th>
+                    <th>Subnet Pertama</th>
+                    <th>Subnet Terakhir</th>
+                    <th>Broadcast</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Subnet</th>
+                    <th>Subnet Pertama</th>
+                    <th>Subnet Terakhir</th>
+                    <th>Broadcast</th>
+                  </tr>
+                </tfoot>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="http://tools.mulqi.uk.to/vendor/jquery/jquery.min.js"></script>
+    <script src="http://tools.mulqi.uk.to/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="http://tools.mulqi.uk.to/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="http://tools.mulqi.uk.to/js/sb-admin-2.min.js"></script>
+    <script src="http://tools.mulqi.uk.to/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="http://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="http://tools.mulqi.uk.to/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="http://tools.mulqi.uk.to/tools/subnetting/js/script.js"></script>
+  </body>
+</html>
