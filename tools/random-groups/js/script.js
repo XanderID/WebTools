@@ -169,7 +169,6 @@ $(document).ready(function () {
 
   $("#startGroup").on("click", function (event) {
     event.preventDefault();
-    $("#results").show();
 
     let listNames, kelompok;
     if (type === "dgnnama") {
@@ -233,6 +232,7 @@ $(document).ready(function () {
       return;
     }
 
+	$("#results").show();
     let listGroups = [];
     let khusus = [];
     let today = "d" + new Date().getDate();
