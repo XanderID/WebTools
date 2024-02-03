@@ -270,7 +270,7 @@ $(document).ready(function () {
                             ${value
                               .map((member) =>
                                 type === "dgnabsen"
-                                  ? "Absen " + member
+                                  ? "Absen " + member + "<br />"
                                   : member.length > 8
                                     ? "<u>" + member + "</u><br />"
                                     : member + "<br />",
