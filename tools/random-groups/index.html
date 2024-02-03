@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>WebTools - Random Groups</title>
+    <meta
+      content="Kocok Anggota Kelas kamu menjadi Kelompok!"
+      name="description"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://tools.mulqi.uk.to/css/sb-admin-2.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/2fa2350def.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <br /><br />
+    <div class="container-fluid">
+      <h1 class="h3 mb-2 text-gray-800">Random Groups</h1>
+      <p class="mb-4">
+        Tools ini berguna untuk Mempecah Anggota kelas Menjadi Beberapa Kelompok
+      </p>
+
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Starting</h5>
+          <div class="d-flex align-items-center">
+            <span class="mr-2"></span>
+            <p class="card-text">
+              Sebelum memulai Membuat Kelompok, Mohon isi Form dibawah ini<br /><br />
+            </p>
+          </div>
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <div class="form-group">
+                  <p>Ingin Membagi Kelompok Berdasarkan Apa:</p>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="dgnnama"
+                      checked
+                    />
+                    <label class="form-check-label" for="dgnnama"
+                      >Dengan Nama</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="dgnabsen"
+                    />
+                    <label class="form-check-label" for="dgnabsen"
+                      >Dengan Absen</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div id="dgnnamaform">
+                <div class="col-auto">
+                  <div class="form-group">
+                    <label for="namamurid">Masukan Nama-Nama Murid</label>
+                    <textarea
+                      class="form-control"
+                      id="namamurid"
+                      rows="10"
+                      placeholder="Muhamad Mulqi"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div id="dgnabsenform">
+                <div class="col-auto">
+                  <p>Absen Pertama dan Terakhir</p>
+                  <div class="form-group">
+                    <div class="input-group mb-2">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="startabsen"
+                        placeholder="1"
+                      />
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">-</div>
+                      </div>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="endabsen"
+                        placeholder="35"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <label for="jumlah">Masukan Jumlah Kelompok</label>
+                <input
+                  type="number"
+                  class="form-control mb-2"
+                  id="jumlah"
+                  placeholder="4"
+                />
+              </div>
+              <div class="col-auto">
+                <button id="kembali" class="btn btn-primary btn-icon-split">
+                  <span class="icon text-white-50">
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </span>
+                  <span class="text">Back</span>
+                </button>
+                <button id="startGroup" class="btn btn-primary btn-icon-split">
+                  <span class="icon text-white-50">
+                    <i class="fa-solid fa-scissors"></i>
+                  </span>
+                  <span class="text">Bagi</span>
+                </button>
+                <div class="my-2"></div>
+                <button id="saveGroup" class="btn btn-primary btn-icon-split">
+                  <span class="icon text-white-50">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                  </span>
+                  <span class="text">Saves</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <br />
+      <div id="results">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Groups</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <p class="mb-4">
+                Berikut Kelompok yang sudah Dibagi!<br /><br />Yang digaris
+                bawahi itu Namanya Sambung ya, Digaris bawahi dikarenakan form
+                tidak bisa melebihi 8 Huruf!<br />
+              </p>
+              <div id="hasilGroup" class="row"></div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+      </div>
+    </div>
+    <script src="https://tools.mulqi.uk.to/vendor/jquery/jquery.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/js/sb-admin-2.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://tools.mulqi.uk.to/tools/random-groups/js/script.js"></script>
+  </body>
+</html>

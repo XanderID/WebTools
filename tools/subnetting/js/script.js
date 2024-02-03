@@ -1,3 +1,4 @@
+// ALL CODE IN THIS BY MUHAMAD MULQI ( XANDER ID)
 $(document).ready(function () {
   Swal.fire({
     title: "Informasi",
@@ -44,15 +45,32 @@ $(document).ready(function () {
     return multiples;
   }
 
-  function ipToBinary(ip) {
-    let binary = "";
-    const ipegments = ip.split(".");
+  function ipToBinary(input) {
+    var chunk = input.split(".");
+    var result = "";
+    var x;
 
-    ipegments.forEach((segment) => {
-      binary += segment.toString(2).padStart(8, "0") + ".";
-    });
+    for (i = 0; i < chunk.length; i++) {
+      x = parseInt(chunk[i]);
 
-    return binary.slice(0, -1);
+      if (x > 255) {
+        return false;
+      }
+
+      x = new BigNumber(x, 10).toString(2);
+
+      while (x.length < 8) {
+        x = "0" + x;
+      }
+
+      if (i < chunk.length - 1) {
+        result = result + x + ".";
+      } else {
+        result = result + x;
+      }
+    }
+
+    return result;
   }
 
   function getSubnetMask(cidr) {
@@ -100,7 +118,7 @@ $(document).ready(function () {
 
   function subnetInfo(ip, subnetMask, kelas = "C") {
     const subnetInfoArray = [];
-    const ckl = kelas === "B" ? 2 : kelas === "C" ? 3 : 0;
+    const ckl = kelas === "A" ? 1 : kelas === "B" ? 2 : kelas === "C" ? 3 : 0;
 
     let done = true;
     while (done) {
@@ -131,8 +149,10 @@ $(document).ready(function () {
     return (dec >>> 0).toString(2);
   }
 
-  $("#kembali").on("click", function () {
-    window.location.href = "http://tools.mulqi.uk.to";
+  $("#kembali").on("click", function (event) {
+    event.preventDefault();
+
+    window.location.href = "https://tools.mulqi.uk.to";
   });
 
   $("#startSubnet").on("click", function (event) {
@@ -160,6 +180,20 @@ $(document).ready(function () {
     // Info
     let sub, subex, biner, angka_1, angka_0, xsub, ysub, blksb, bloksub;
     if (kelas === "A") {
+      subex = subnet.split(".");
+      biner = ipToBinary(subnet);
+
+      sub = biner.split(".");
+      sub.shift();
+      sub = sub.join(".");
+
+      angka_1 = sub.split("1").length - 1;
+      angka_0 = sub.split("0").length - 1;
+
+      xsub = Math.pow(2, angka_1);
+      ysub = Math.pow(2, angka_0) - 2;
+      blksb = subex[subex.length - 3];
+      bloksub = 256 - blksb;
     } else if (kelas === "B") {
       subex = subnet.split(".");
       biner = ipToBinary(subnet);
@@ -216,4 +250,3 @@ $(document).ready(function () {
     });
   });
 });
-    

@@ -3,10 +3,15 @@ const menuData = [
     title: "Subnetting",
     content: "Subnet IP dan CIDR Kamu Secara Otomatis!",
     link: "subnetting",
-  }
+  },
+  {
+    title: "Random Groups",
+    content: "Buat Kelompok Dari Nama atau Absen Kelas kamu!",
+    link: "random-groups",
+  },
 ];
 
-menuData.forEach(item => {
+menuData.forEach((item) => {
   const card = document.createElement("div");
   card.classList.add("card", "shadow", "mb-4");
 
@@ -28,7 +33,7 @@ menuData.forEach(item => {
   button.classList.add("btn", "btn-primary");
   button.textContent = "Use the Tool";
   button.onclick = function () {
-    window.location.href = "http://tools.mulqi.uk.to/tools/" + item.link;
+    window.location.href = "https://tools.mulqi.uk.to/tools/" + item.link;
   };
   cardBody.appendChild(button);
 
