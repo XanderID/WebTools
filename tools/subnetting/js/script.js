@@ -248,5 +248,7 @@ $(document).ready(function () {
         ])
         .draw(false);
     });
+    
+    $(document).scrollTop($(document).height() + 500);
   });
 });

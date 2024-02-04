@@ -77,26 +77,44 @@ $(document).ready(function () {
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
-  let type = "dgnnama";
-  function refreshPage() {
-    let rever = type == "dgnnama" ? "dgnabsen" : "dgnnama";
-    let rform = "#" + rever + "form";
-    let form = "#" + type + "form";
+  function flipCards() {
+    $(".flip-card").addClass("flip");
 
-    $("#" + rever).prop("checked", false);
-    $("#" + type).prop("checked", true);
-    $(form).show();
-    $(rform).hide();
+    setTimeout(function () {
+      if ($(".flip-card").hasClass("flip")) {
+        $(".flip-card").removeClass("flip");
+      }
+    }, 1000);
   }
 
-  refreshPage();
-  $("#dgnnama").on("click", function () {
-    type = "dgnnama";
-    refreshPage();
+  function toggleRadio(radios, on, form) {
+    $.each(radios, function (index, id) {
+      $("#" + id).prop("checked", false);
+      if (form) {
+        $("#" + id + "form").hide();
+      }
+    });
+
+    $("#" + on).prop("checked", true);
+    if (form) $("#" + on + "form").show();
+  }
+
+  // Switch ON OFF
+  let type = "dgnnama";
+  let anim = "dgnanimasi";
+  toggleRadio(["dgnnama", "dgnabsen"], type, true);
+  toggleRadio(["dgnanimasi", "tanpaanimasi"], anim, false);
+
+  $("#dgnnama, #dgnabsen").on("change", function () {
+    let id = $(this).attr("id");
+    toggleRadio(["dgnnama", "dgnabsen"], id, true);
+    type = id;
   });
-  $("#dgnabsen").on("click", function () {
-    type = "dgnabsen";
-    refreshPage();
+
+  $("#dgnanimasi, #tanpaanimasi").on("change", function () {
+    let id = $(this).attr("id");
+    toggleRadio(["dgnanimasi", "tanpaanimasi"], id);
+    anim = id;
   });
 
   // Get Saved Url
@@ -173,10 +191,10 @@ $(document).ready(function () {
     let listNames, kelompok;
     if (type === "dgnnama") {
       listNames = $("#namamurid").val().split("\n");
-      if (listNames.length < 4) {
+      if (listNames.length < 2) {
         Swal.fire({
           title: "Error",
-          html: "Mohon Masukan Minimal 4 Orang",
+          html: "Mohon Masukan Minimal 2 Orang",
           icon: "error",
         });
 
@@ -232,7 +250,7 @@ $(document).ready(function () {
       return;
     }
 
-	$("#results").show();
+    $("#results").show();
     let listGroups = [];
     let khusus = [];
     let today = "d" + new Date().getDate();
@@ -246,11 +264,13 @@ $(document).ready(function () {
       }
     }
 
+    // Start The Randomize
     for (let i = 0; i <= Math.floor(Math.random() * 11); i++) {
-      listGroups = bagiKelompok(shuffleArray(listNames), kelompok, khusus);
+      listGroups = shuffleArray(
+        bagiKelompok(shuffleArray(listNames), kelompok, khusus),
+      );
     }
 
-    // Start The Randomize
     let hasilGroup = $("#hasilGroup");
     hasilGroup.empty();
 
@@ -258,30 +278,65 @@ $(document).ready(function () {
       let randomColor = getRandomColor();
       let keyup = parseInt(key) + 1;
       let cardHtml = `
-                <div class="col-6" id="kelompok-${keyup}">
-                    <div class="card border-top-lg border-${randomColor} mb-4">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <div class="m-0 font-weight-bold text-${randomColor}">
-                                    Kelompok<br />
-                                    <span>${keyup}</span>
-                                </div>
-                            </div>
-                            ${value
-                              .map((member) =>
-                                type === "dgnabsen"
-                                  ? "Absen " + member + "<br />"
-                                  : member.length > 8
-                                    ? "<u>" + member + "</u><br />"
-                                    : member + "<br />",
-                              )
-                              .join("")}
-
-                        </div>
+    <div class="col-6" id="kelompok-${keyup}-card">
+        <div class="card border-top-lg border-${randomColor} mb-4 flip-card">
+            <div class="card-body">
+                <div class="text-center">
+                    <div class="m-0 font-weight-bold text-${randomColor}">
+                        Kelompok<br />
+                        <span id="kelompok-${keyup}-title">${keyup}</span>
                     </div>
                 </div>
-            `;
+                <div id="kelompok-${keyup}-member">
+                    ${value
+                      .map((member) =>
+                        type === "dgnabsen"
+                          ? "Absen " + member + "<br />"
+                          : member.length > 8
+                            ? "<u>" + member + "</u><br />"
+                            : member + "<br />",
+                      )
+                      .join("")}
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+
       hasilGroup.append(cardHtml);
     });
+
+    $(document).scrollTop($(document).height() + 500);
+    flipCards();
+
+    // Start Animation
+    if (anim == "dgnanimasi") {
+      let animation = setInterval(function () {
+        flipCards();
+        listGroups = shuffleArray(
+          bagiKelompok(shuffleArray(listNames), kelompok, khusus),
+        );
+        setTimeout(function () {
+          $.each(listGroups, function (key, value) {
+            let keyup = parseInt(key) + 1;
+            let card = $(`#kelompok-${keyup}-member`);
+            card.html(
+              `${value
+                .map((member) =>
+                  type === "dgnabsen"
+                    ? "Absen " + member + "<br />"
+                    : member.length > 8
+                      ? "<u>" + member + "</u><br />"
+                      : member + "<br />",
+                )
+                .join("")}`,
+            );
+          });
+        }, 500);
+      }, 1500);
+      setTimeout(function () {
+        clearInterval(animation);
+      }, 1000 * 5);
+    }
   });
 });

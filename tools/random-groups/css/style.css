@@ -1,0 +1,23 @@
+@keyframes flip {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip-card {
+  perspective: 1000px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flip {
+  animation: flip 0.6s;
+  transform: rotateY(180deg);
+}
+
+.flip-card .card-body {
+  backface-visibility: hidden;
+}
