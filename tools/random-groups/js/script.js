@@ -134,10 +134,10 @@ $(document).ready(function () {
     let paramNames = getParam("type");
     if (paramNames == "dgnabsen") {
       type = paramNames;
-      refreshPage();
+      toggleRadio(["dgnnama", "dgnabsen"], type, true);
     } else {
       type = "dgnnama";
-      refreshPage();
+      toggleRadio(["dgnnama", "dgnabsen"], type, true);
     }
   }
   if (getParam("absen") !== false) {
