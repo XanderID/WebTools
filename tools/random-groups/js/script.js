@@ -270,6 +270,7 @@ $(document).ready(function () {
         bagiKelompok(shuffleArray(listNames), kelompok, khusus),
       );
     }
+    listGroups.sort((a, b) => b.length - a.length);
 
     let hasilGroup = $("#hasilGroup");
     hasilGroup.empty();
@@ -316,6 +317,7 @@ $(document).ready(function () {
         listGroups = shuffleArray(
           bagiKelompok(shuffleArray(listNames), kelompok, khusus),
         );
+        listGroups.sort((a, b) => b.length - a.length);
         setTimeout(function () {
           $.each(listGroups, function (key, value) {
             let keyup = parseInt(key) + 1;
