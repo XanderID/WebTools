@@ -237,6 +237,7 @@ $(document).ready(function () {
       paging: false,
     });
 
+	table.clear();
     subnets.forEach((subnet) => {
       const columns = ["subnet", "host_first", "host_last", "broadcast"];
       table.row
