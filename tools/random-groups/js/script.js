@@ -1,4 +1,3 @@
-// ALL CODE IN THIS BY MUHAMAD MULQI ( XANDER ID)
 $(document).ready(function () {
   function getParam(param) {
     const urlParams = new URLSearchParams(window.location.search);

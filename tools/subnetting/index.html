@@ -40,7 +40,22 @@
         subnetting, anda bisa membuat network dengan batasan host yang lebih
         realistis sesuai kebutuhan.
       </p>
+      <p class="mb-4" id="vslmtext">
+        Metode VLSM adalah pengembangan mekanisme subnetting, dimana dalam VLSM
+        dilakukan peningkatan dari kelemahan subneting klasik, yang mana dalam
+        clasik subneting, subnet zeroes, dan subnet-ones tidak bisa digunakan.
+        Pada metode VLSM subnetting yang digunakan berdasarkan jumlah host,
+        sehingga akan semakin banyak jaringan yang akan dipisahkan. Tahapan
+        perhitungan menggunakan VLSM IP Address yang ada dihitung menggunakan
+        CIDR selanjutnya baru dipecah kembali menggunakan VLSM. Maka setelah
+        dilakukan perhitungan maka dapat dilihat subnet yang telah dipecah maka
+        akan menjadi beberapa subnet lagi dengan mengganti subnetnya.
+      </p>
+      <p class="mb-4">
+        Jika kamu Ingin melihat List CIDR <a href="list.html">Klick Disini</a>.
+      </p>
 
+      <p></p>
       <div class="card mt-3">
         <div class="card-body">
           <h5 class="card-title">Starting</h5>
@@ -76,6 +91,75 @@
                 </div>
               </div>
               <div class="col-auto">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="dengancara"
+                    checked
+                  />
+                  <label class="form-check-label" for="dengancara">
+                    Dengan Pengerjaan
+                  </label>
+                </div>
+              </div>
+              <br />
+              <div class="col-auto">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="metodeVSLM"
+                  />
+                  <label class="form-check-label" for="metodeVSLM">
+                    Dengan Metode VSLM
+                  </label>
+                </div>
+              </div>
+
+              <div id="vslmform">
+                <br />
+                <p>
+                  Mohon Masukan Nama Host dan Jumlah Host nya, Jika ingin
+                  menambah host Baru Klick <i class="fa-solid fa-plus"></i>,
+                  Jika ingin menghapus klick <i class="fa-solid fa-minus"></i>.
+                </p>
+                <div id="vslmfin">
+                  <div class="input-group input-group-joined" id="vslm-0">
+                    <input
+                      class="form-control rounded-0"
+                      type="text"
+                      id="hostn-0"
+                      placeholder="Host Name"
+                    />
+                    <input
+                      class="form-control"
+                      type="number"
+                      id="hosta-0"
+                      placeholder="Amount"
+                    />
+                    <button
+                      class="btn btn-primary rounded-0"
+                      id="addNewHost"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button
+                      class="btn btn-danger rounded-0"
+                      id="removeHost"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+
+              <br />
+              <br />
+              <div class="col-auto">
                 <button id="kembali" class="btn btn-primary btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fa-solid fa-arrow-left"></i>
@@ -93,17 +177,18 @@
           </form>
         </div>
       </div>
-
       <br />
-      <div id="results">
+      <div id="dgncara">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Informasi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">
+              Berikut Pengerjaan
+            </h6>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <p class="mb-4">
-                Berikut Hasil Subnetting nya, Mohon dicek Ulang!
+                Berikut Cara Pengerjaan Subnetting nya, Mohon dicek Ulang!
               </p>
               <form>
                 <div class="form-row align-items-center">
@@ -140,13 +225,13 @@
                     </div>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
-                        <div class="input-group-text">Subnet X</div>
+                        <div class="input-group-text">Jumlah Subnet</div>
                       </div>
                       <input type="text" class="form-control" id="infosubx" />
                     </div>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
-                        <div class="input-group-text">Subnet Y</div>
+                        <div class="input-group-text">Jumlah Host / Subnet</div>
                       </div>
                       <input type="text" class="form-control" id="infosuby" />
                     </div>
@@ -162,9 +247,28 @@
             </div>
           </div>
         </div>
+      </div>
+      <div id="dgncaravslm">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+              Berikut Pengerjaan
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <p class="mb-4">
+                Berikut Cara Pengerjaan Subnetting Melalui Metode VSLM nya,
+                Mohon dicek Ulang!
+              </p>
+              <div id="dgncaravslmtext"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
 
-        <br />
-
+      <div id="results">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">List Subnet</h6>
@@ -174,6 +278,7 @@
               <table
                 class="table table-bordered"
                 id="dataTable"
+                name="subnetTable"
                 width="100%"
                 cellspacing="0"
               >
@@ -200,7 +305,49 @@
         </div>
       </div>
     </div>
-
+    <div id="resultsvslm">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">List Host</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              name="subnetTableVSLM"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Needed Size</th>
+                  <th>Allocated Size</th>
+                  <th>Address</th>
+                  <th>Dec Mask</th>
+                  <th>Range IP</th>
+                  <th>Broadcast IP</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Nama</th>
+                  <th>Needed Size</th>
+                  <th>Allocated Size</th>
+                  <th>Address</th>
+                  <th>Dec Mask</th>
+                  <th>Range IP</th>
+                  <th>Broadcast IP</th>
+                </tr>
+              </tfoot>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
     <script src="https://tools.mulqi.uk.to/tools/subnetting/js/bignumber.min.js"></script>
     <script src="https://tools.mulqi.uk.to/vendor/jquery/jquery.min.js"></script>
     <script src="https://tools.mulqi.uk.to/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -210,6 +357,7 @@
     <script src="https://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="https://tools.mulqi.uk.to/js/demo/datatables-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://tools.mulqi.uk.to/tools/subnetting/js/script.js"></script>
+    <script src="https://tools.mulqi.uk.to/tools/subnetting/js/libs.js"></script>
+    <script src="https://tools.mulqi.uk.to/tools/subnetting/js/subnetting.js"></script>
   </body>
 </html>

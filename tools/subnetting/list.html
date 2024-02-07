@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>WebTools - CIDR List</title>
+    <meta content="Cidr List!" name="description" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://tools.mulqi.uk.to/css/sb-admin-2.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/2fa2350def.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <br /><br />
+    <div class="container-fluid">
+      <h1 class="h3 mb-2 text-gray-800">CIDR</h1>
+      <p class="mb-4">
+        CIDR atau Prefix adalah kumpulan alamat IP yang memiliki prefiks
+        jaringan dan jumlah bit yang sama. Blok besar terdiri dari lebih banyak
+        alamat IP dan sebuah sufiks kecil.<br /><br />Internet Assigned Numbers
+        Authority (IANA) menetapkan blok CIDR besar ke registri internet
+        regional (RIR). Lalu, RIR menetapkan blok yang lebih kecil ke registri
+        internet lokal (LIR), yang kemudian menetapkannya ke organisasi.
+        Sementara itu, pengguna privat mengajukan permintaan blok CIDR dari
+        penyedia layanan internet mereka.
+      </p>
+      <p class="mb-4">
+        Jika kamu Ingin Kembali <a href="index.html">Klick Disini</a>.
+      </p>
+
+      <p></p>
+
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Berikut List CIDR</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              name="cidrTable"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>CIDR</th>
+                  <th>Netmask Decimal</th>
+                  <th>Netmask Biner</th>
+                  <th>Jumlah Subnet</th>
+                  <th>Jumlah Host/Subnet</th>
+                  <th>Blok Subnet</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>CIDR (Prefix)</th>
+                  <th>Netmask Decimal</th>
+                  <th>Netmask Biner</th>
+                  <th>Jumlah Subnet</th>
+                  <th>Jumlah Host/Subnet</th>
+                  <th>Blok Subnet</th>
+                </tr>
+              </tfoot>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://tools.mulqi.uk.to/tools/subnetting/js/bignumber.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/jquery/jquery.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/js/sb-admin-2.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="https://tools.mulqi.uk.to/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/libs.js"></script>
+    <script src="./js/list.js"></script>
+  </body>
+</html>
