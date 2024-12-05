@@ -156,14 +156,14 @@ $(document).ready(function () {
   $("#kembali").on("click", function (event) {
     event.preventDefault();
 
-    window.location.href = "https://tools.mulqi.uk.to";
+    window.location.href = "https://tools.mulqi.my.id";
   });
 
   $("#saveGroup").on("click", function (event) {
     event.preventDefault();
 
     let temp = $("<input>");
-    let textGroups = "https://tools.mulqi.uk.to/tools/random-groups/?";
+    let textGroups = "https://tools.mulqi.my.id/tools/random-groups/?";
     textGroups += "type=" + type + "&jumlah=" + $("#jumlah").val();
     if (type == "dgnnama") {
       textGroups += "&names=" + $("#namamurid").val().split("\n").join(";");

@@ -20,7 +20,7 @@ $(document).ready(function () {
   $("#kembali").on("click", function (event) {
     event.preventDefault();
 
-    window.location.href = "https://tools.mulqi.uk.to";
+    window.location.href = "https://tools.mulqi.my.id";
   });
 
   $("#metodeVSLM").on("click", function (event) {

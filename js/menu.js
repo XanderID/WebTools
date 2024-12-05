@@ -33,7 +33,7 @@ menuData.forEach((item) => {
   button.classList.add("btn", "btn-primary");
   button.textContent = "Use the Tool";
   button.onclick = function () {
-    window.location.href = "https://tools.mulqi.uk.to/tools/" + item.link;
+    window.location.href = "https://tools.mulqi.my.id/tools/" + item.link;
   };
   cardBody.appendChild(button);
 
